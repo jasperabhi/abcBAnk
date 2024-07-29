@@ -1,6 +1,7 @@
 package com.abcbank.LoanManagementSystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.abcbank.LoanManagementSystem.dto.request.CustomerRequest;
@@ -8,6 +9,8 @@ import com.abcbank.LoanManagementSystem.dto.response.CustomerResponse;
 import com.abcbank.LoanManagementSystem.exception.InvalidCustomerRequestException;
 import com.abcbank.LoanManagementSystem.model.Customer;
 import com.abcbank.LoanManagementSystem.repository.CustomerRepository;
+
+import java.util.List;
 
 @Service
 public class CustomerService {
@@ -27,6 +30,10 @@ public class CustomerService {
 		CustomerResponse customerResponse = new CustomerResponse();
 		customerResponse.setMessage(message);
 		return customerResponse;
+	}
+	
+	public List<Customer> viewAllApplication(){
+		return customerRepository.findAll();
 	}
 
 	private Customer returnCustomer(CustomerRequest customerRequest) {
